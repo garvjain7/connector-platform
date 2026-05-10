@@ -12,7 +12,6 @@ services:
       - key: PYTHON_VERSION
         value: 3.10.0
 
-      # Replace after frontend deploy if needed
       - key: FRONTEND_URL
         value: https://dataport.onrender.com
 
@@ -32,9 +31,10 @@ services:
         fromService:
           type: web
           name: dataport-api
-          property: url
+          property: hostport
 
     routes:
       - type: rewrite
         source: /*
         destination: /index.html
+        
