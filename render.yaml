@@ -18,7 +18,7 @@ services:
       sizeGB: 1
 
   # ─── Frontend Service ───────────────────────────────────────────────────────
-  - type: static
+  - type: static_site
     name: dataport
     env: node
     buildCommand: npm install && npm run build
