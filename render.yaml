@@ -3,33 +3,41 @@ services:
   - type: web
     name: dataport-api
     env: python
-    buildCommand: pip install -r backend/requirements.txt
-    startCommand: python -m uvicorn main:app --host 0.0.0.0 --port $PORT --app-dir backend
+
+    buildCommand: cd backend && pip install -r requirements.txt
+
+    startCommand: cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT
+
     envVars:
       - key: PYTHON_VERSION
         value: 3.10.0
+
       - key: FRONTEND_URL
-        fromStaticSite:
-          name: dataport
-          property: url
+        value: https://dataport.onrender.com
+
     disk:
       name: connector-storage
       mountPath: /opt/render/project/src/backend/uploads
       sizeGB: 1
 
   # ─── Frontend Service ───────────────────────────────────────────────────────
-  - type: static_site
+  - type: web
     name: dataport
-    env: node
-    buildCommand: npm install && npm run build
-    publishDir: dist
+    env: static
+
     rootDir: frontend
+
+    buildCommand: npm install && npm run build
+
+    staticPublishPath: dist
+
     envVars:
       - key: VITE_API_URL
         fromService:
           type: web
           name: dataport-api
-          property: url
+          property: hostport
+
     routes:
       - type: rewrite
         source: /*
