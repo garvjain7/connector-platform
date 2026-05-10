@@ -12,18 +12,14 @@ services:
       - key: PYTHON_VERSION
         value: 3.10.0
 
+      # Replace after frontend deploy if needed
       - key: FRONTEND_URL
         value: https://dataport.onrender.com
-
-    disk:
-      name: connector-storage
-      mountPath: /opt/render/project/src/backend/uploads
-      sizeGB: 1
 
   # ─── Frontend Service ───────────────────────────────────────────────────────
   - type: web
     name: dataport
-    env: static
+    runtime: static
 
     rootDir: frontend
 
@@ -36,7 +32,7 @@ services:
         fromService:
           type: web
           name: dataport-api
-          property: hostport
+          property: url
 
     routes:
       - type: rewrite
