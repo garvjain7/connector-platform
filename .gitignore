@@ -1,0 +1,27 @@
+# System
+.DS_Store
+Thumbs.db
+
+# Root Node
+node_modules/
+npm-debug.log*
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+
+# Backend
+backend/__pycache__/
+backend/*.pyc
+backend/venv/
+backend/.env
+backend/uploads/raw/*
+backend/uploads/normalized/*
+!backend/uploads/raw/.gitkeep
+!backend/uploads/normalized/.gitkeep
+
+# Environments
+.env
+.env.local

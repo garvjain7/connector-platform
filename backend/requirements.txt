@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+pandas
+openpyxl
+python-multipart
+requests
+psycopg2-binary
+pymysql
+gspread
+google-auth
+google-analytics-data
+notion-client
+python-dotenv
