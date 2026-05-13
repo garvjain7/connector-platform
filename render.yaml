@@ -30,7 +30,7 @@ services:
       - key: VITE_API_URL
         fromService:
           type: web
-          name: dataport-api
+          name: https://dataport-api.onrender.com/
           property: host
 
     routes:
