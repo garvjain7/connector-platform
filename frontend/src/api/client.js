@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = import.meta.env.VITE_API_URL || '/api'
+const API_URL = import.meta.env.VITE_API_URL || ''
 const http = axios.create({ baseURL: API_URL })
 
 // ── Connectors ────────────────────────────────────────────────────────────────
@@ -45,29 +45,29 @@ function buildFormData(connector, credentials, files, source = null) {
 
 export async function validateConnector(connector, credentials, files) {
   const form = buildFormData(connector, credentials, files)
-  const { data } = await http.post('/ingest/validate', form)
+  const { data } = await http.post('/api/ingest/validate', form)
   return data
 }
 
 export async function fetchData(connector, credentials, files, source) {
   const form = buildFormData(connector, credentials, files, source)
-  const { data } = await http.post('/ingest/fetch', form)
+  const { data } = await http.post('/api/ingest/fetch', form)
   return data
 }
 
 // ── Datasets ──────────────────────────────────────────────────────────────────
 
 export async function listDatasets() {
-  const { data } = await http.get('/datasets')
+  const { data } = await http.get('/api/datasets')
   return data
 }
 
 export async function getDataset(datasetId) {
-  const { data } = await http.get(`/datasets/${datasetId}`)
+  const { data } = await http.get(`/api/datasets/${datasetId}`)
   return data
 }
 
 export async function deleteDataset(datasetId) {
-  const { data } = await http.delete(`/datasets/${datasetId}`)
+  const { data } = await http.delete(`/api/datasets/${datasetId}`)
   return data
 }
