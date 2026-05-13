@@ -13,7 +13,7 @@ services:
         value: 3.10.0
 
       - key: FRONTEND_URL
-        value: https://dataport.onrender.com
+        value: https://dataport-dcqi.onrender.com/
 
   # ─── Frontend Service ───────────────────────────────────────────────────────
   - type: web
