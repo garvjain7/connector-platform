@@ -31,7 +31,7 @@ services:
         fromService:
           type: web
           name: dataport-api
-          property: hostport
+          property: host
 
     routes:
       - type: rewrite
